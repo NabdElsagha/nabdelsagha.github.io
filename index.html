@@ -136,6 +136,10 @@ text-decoration:none;
 </header>
 
 <div class="container">
+<div style="background: rgba(255,255,255,0.05); padding: 10px; border-radius: 10px; margin-bottom: 20px;">
+    <p id="last-update" style="color: #ffd166; font-size: 14px; margin: 5px 0;"></p>
+    <p id="market-status" style="font-weight: bold; font-size: 15px; margin: 5px 0;"></p>
+</div>
 
 <div class="live">
 <div class="dot"></div>
@@ -396,6 +400,19 @@ navigator.share
 }
 
 async function update(){
+    // كود تحديث الوقت وحالة السوق
+    const now = new Date();
+    const timeString = now.toLocaleTimeString('ar-EG', { hour: '2-digit', minute: '2-digit' });
+    const dateString = now.toLocaleDateString('ar-EG');
+    document.getElementById('last-update').innerText = `آخر تحديث: ${dateString} الساعة ${timeString}`;
+
+    const hour = now.getHours();
+    const statusElement = document.getElementById('market-status');
+    if (hour >= 10 && hour <= 22) {
+        statusElement.innerHTML = '<span style="color: #2ecc71;">●</span> السوق الآن: مفتوح (أسعار نشطة)';
+    } else {
+        statusElement.innerHTML = '<span style="color: #e74c3c;">●</span> السوق الآن: مغلق (أسعار ثابتة)';
+    }
 
 await currency()
 
