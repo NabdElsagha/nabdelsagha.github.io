@@ -1,45 +1,31 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أخبار الذهب والاقتصاد - نبض الصاغة</title>
-    <style>
-        body { background-color: #0d0d0d; color: #fff; font-family: sans-serif; margin: 0; padding: 0; }
-        nav { background: #1a1a1a; padding: 15px; text-align: center; border-bottom: 2px solid #ffd166; sticky; top: 0; }
-        nav a { color: #fff; text-decoration: none; margin: 0 10px; }
-        .container { padding: 20px; max-width: 800px; margin: auto; }
-        .article-card { background: #1a1a1a; padding: 20px; border-radius: 10px; margin-bottom: 30px; border-right: 5px solid #ffd166; }
-        h1 { color: #ffd166; text-align: center; }
-        h2 { color: #ffd166; }
-        p { line-height: 1.8; color: #ccc; font-size: 16px; }
-        .date { color: #888; font-size: 12px; }
-    </style>
-</head>
-<body>
-
-<nav>
-    <a href="index.html">الرئيسية</a> |
-    <a href="news.html" style="color: #ffd166; font-weight: bold;">الأخبار</a> |
-    <a href="about.html">من نحن</a>
-</nav>
-
-<div class="container">
-    <h1>مركز أخبار وتحليلات الذهب</h1>
-
-    <div class="article-card">
-        <span class="date">12 أبريل 2026</span>
-        <h2>تحليل: لماذا يظل الذهب الملاذ الآمن الوحيد في ظل التضخم؟</h2>
-        <p>يعتبر الذهب تاريخياً هو الأداة الأقوى للتحوط ضد التضخم. عندما تنخفض القوة الشرائية للعملات الورقية، يميل المستثمرون إلى تحويل سيولتهم إلى سبائك ذهبية. في السوق المصري، نلاحظ أن الذهب لا يتأثر فقط بالبورصة العالمية، بل يتأثر بشكل مباشر بحركة العرض والطلب المحلية وسعر صرف الجنيه..</p>
-        <p><strong>نصيحة الخبراء:</strong> عند الشراء بغرض الاستثمار، يفضل دائماً التوجه للسبائك والجنيهات الذهب لتجنب المصنعية العالية التي تُفقدك جزءاً من ربحك عند البيع المستقبلي.</p>
-    </div>
-
-    <div class="article-card">
-        <span class="date">11 أبريل 2026</span>
-        <h2>دليلك الشامل لأنواع السبائك المتوفرة في السوق المصري</h2>
-        <p>تتنوع السبائك بين البلدي والمغلفة (مثل BTC وسويس جولد). السبيكة المغلفة تتميز بأنها مضمونة العيار وتأتي مع كاش باك (استرداد جزء من المصنعية) عند إعادة بيعها وهي مغلفة. أما السبيكة البلدي، فتكون مصنعيتها أقل ولكن يجب التأكد من دمغتها في مصلحة الدمغة والموازين لضمان حقك.</p>
-    </div>
+<div id="rss-news" style="margin-top: 20px;">
+    <p style="text-align:center;">جاري تحميل آخر أخبار الذهب والاقتصاد...</p>
 </div>
 
-</body>
-</html>
+<script>
+    async function loadAutoNews() {
+        const rssUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://www.youm7.com/rss/SectionRss?SectionID=297';
+        
+        try {
+            const response = await fetch(rssUrl);
+            const data = await response.json();
+            let html = '';
+            
+            data.items.slice(0, 10).forEach(item => {
+                html += `
+                    <div style="background: #1a1a1a; padding: 15px; border-radius: 8px; margin-bottom: 15px; border-right: 4px solid #ffd166;">
+                        <h3 style="font-size: 18px; margin-bottom: 5px;"><a href="${item.link}" target="_blank" style="color: #ffd166; text-decoration: none;">${item.title}</a></h3>
+                        <p style="font-size: 14px; color: #ccc;">${item.pubDate}</p>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('rss-news').innerHTML = html;
+        } catch (error) {
+            document.getElementById('rss-news').innerHTML = '<p>عذراً، فشل تحميل الأخبار حالياً. حاول مرة أخرى.</p>';
+        }
+    }
+
+    // تشغيل الدالة بمجرد فتح الصفحة
+    window.onload = loadAutoNews;
+</script>
