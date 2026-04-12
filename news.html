@@ -1,26 +1,36 @@
-<div class="container" style="padding: 20px; background: #000;">
-    <h2 style="color: #ffd166; text-align: center;">آخر أخبار الأسواق والذهب</h2>
-    
-    <div class="tradingview-widget-container">
-      <div class="tradingview-widget-container__widget"></div>
-      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-timeline.js" async>
-      {
-      "feedMode": "market",
-      "market": "crypto", 
-      "colorTheme": "dark",
-      "isTransparent": false,
-      "displayMode": "regular",
-      "width": "100%",
-      "height": "600",
-      "locale": "ar"
-    }
-      </script>
-    </div>
-    <div style="margin-top: 30px; background: #1a1a1a; padding: 20px; border-radius: 10px; border-right: 5px solid #ffd166;">
-        <h3 style="color: #ffd166;">تحليل "نبض الصاغة" اليومي</h3>
-        <p style="color: #ccc; line-height: 1.8;">
-            نتابع معكم في هذه الصفحة تحديثات مستمرة ليس فقط للأسعار، ولكن للتقارير الاقتصادية التي تؤثر على قرار الشراء والبيع. 
-            تذكر دائماً أن الذهب هو استثمار طويل الأمد، والتقلبات اللحظية هي فرصة جيدة للمستثمر الذكي لبناء محفظة قوية.
-        </p>
+<div class="container" style="padding: 20px; text-align: right; direction: rtl;">
+    <h1 style="color: #ffd166; text-align: center;">آخر أخبار الذهب والاقتصاد العربي</h1>
+    <div id="news-container">
+        <p style="text-align: center; color: #fff;">جاري جلب أحدث الأخبار من البورصة...</p>
     </div>
 </div>
+
+<script>
+    // هنستخدم محول RSS لـ JSON عشان نعرض الأخبار كأنها جزء من موقعك
+    const rssUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://www.skynewsarabia.com/rss/v1/business.xml';
+
+    async function fetchNews() {
+        try {
+            const response = await fetch(rssUrl);
+            const data = await response.json();
+            const container = document.getElementById('news-container');
+            container.innerHTML = '';
+
+            data.items.slice(0, 8).forEach(item => {
+                // هنا بنعرض الخبر بتنسيق موقعك أنت
+                const article = `
+                    <div style="background: #1a1a1a; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-right: 6px solid #ffd166; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+                        <h3 style="margin-top: 0;"><a href="${item.link}" target="_blank" style="color: #ffd166; text-decoration: none; font-size: 20px;">${item.title}</a></h3>
+                        <p style="color: #ddd; line-height: 1.6; font-size: 15px;">${item.description.substring(0, 150)}...</p>
+                        <span style="color: #888; font-size: 12px;">المصدر: سكاي نيوز اقتصاد | ${new Date(item.pubDate).toLocaleDateString('ar-EG')}</span>
+                    </div>
+                `;
+                container.innerHTML += article;
+            });
+        } catch (error) {
+            container.innerHTML = '<p style="color: red; text-align: center;">حدث خطأ في تحميل الأخبار، برجاء المحاولة لاحقاً.</p>';
+        }
+    }
+
+    fetchNews();
+</script>
