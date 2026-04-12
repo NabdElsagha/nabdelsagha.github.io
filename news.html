@@ -1,25 +1,119 @@
-<div class="container" style="padding: 20px; direction: rtl; text-align: right;">
-    <h1 style="color: #ffd166; text-align: center;">نشرة أخبار الذهب والاقتصاد</h1>
-    
-    <div id="rss-feed-container" style="margin-top: 20px;">
-        <script src="https://rss.app/static/widgets/imageboard.js" type="text/javascript" async></script>
-        <ins class="rssapp-widget" data-id="v2ndS3i9VzX6mC4Q"></ins>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أخبار الذهب والاقتصاد - نبض الصاغة</title>
+    <style>
+        body { 
+            background-color: #0d0d0d; 
+            color: #ffffff; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+        }
+        nav { 
+            background: #1a1a1a; 
+            padding: 15px; 
+            text-align: center; 
+            border-bottom: 2px solid #ffd166; 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
+        }
+        nav a { color: #fff; text-decoration: none; margin: 0 15px; font-weight: bold; }
+        nav a:hover { color: #ffd166; }
+        .container { padding: 20px; max-width: 900px; margin: auto; }
+        h1 { color: #ffd166; text-align: center; margin-bottom: 30px; }
+        h2 { color: #ffd166; border-right: 4px solid #ffd166; padding-right: 10px; margin-top: 40px; }
+        .news-item { 
+            background: #1a1a1a; 
+            padding: 20px; 
+            border-radius: 12px; 
+            margin-bottom: 20px; 
+            border: 1px solid #333; 
+            transition: 0.3s;
+        }
+        .news-item:hover { border-color: #ffd166; }
+        .news-item h3 a { color: #ffd166; text-decoration: none; font-size: 1.2rem; }
+        .news-item p { color: #ccc; line-height: 1.6; font-size: 0.95rem; }
+        .news-item small { color: #777; display: block; margin-top: 10px; }
+        .static-article { 
+            background: #1a1a1a; 
+            padding: 25px; 
+            border-radius: 12px; 
+            margin-bottom: 25px; 
+            line-height: 1.8;
+            border-left: 2px solid #333;
+        }
+        .static-article h3 { color: #ffd166; margin-top: 0; }
+        hr { border: 0; border-top: 1px solid #333; margin: 40px 0; }
+    </style>
+</head>
+<body>
+
+<nav>
+    <a href="index.html">الرئيسية</a>
+    <a href="news.html" style="color: #ffd166;">أخبار الذهب</a>
+    <a href="about.html">من نحن</a>
+    <a href="contact.html">اتصل بنا</a>
+</nav>
+
+<div class="container">
+    <h1>نشرة أخبار الذهب والاقتصاد</h1>
+
+    <div id="auto-news-section">
+        <h2>آخر التقارير الاقتصادية (تحديث لحظي)</h2>
+        <div id="news-feed" style="margin-top: 20px;">
+            <p style="text-align: center; color: #888;">جاري جلب أحدث الأخبار من البورصة العالمية والمحلية...</p>
+        </div>
     </div>
-    <hr style="border: 1px solid #333; margin: 40px 0;">
 
-    <div class="articles">
-        <article style="background: #1a1a1a; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
-            <h2 style="color: #ffd166;">دليلك الشامل لشراء الذهب في مصر 2026</h2>
-            <p style="color: #ccc; line-height: 1.8;">
-                يعتبر الذهب في مصر أكثر من مجرد زينة، فهو مخزن القيمة الأول للمصريين. عند الشراء، يجب عليك التأكد من "الدمغة" ومقارنة سعر الجرام المعلن في "نبض الصاغة" مع السعر الذي يعرضه التاجر. المصنعية تختلف من شركة لأخرى، لذا اسأل دائماً عن (صافي سعر الجرام) قبل الإضافات.
-            </p>
-        </article>
+    <hr>
 
-        <article style="background: #1a1a1a; padding: 20px; border-radius: 10px;">
-            <h2 style="color: #ffd166;">لماذا تختلف أسعار الذهب بين المحلات؟</h2>
-            <p style="color: #ccc; line-height: 1.8;">
-                السعر الخام للذهب موحد، ولكن الاختلاف يظهر في "المصنعية" و"الضريبة". المحلات الكبرى في الصاغة قد تقدم مصنعية أقل على السبائك مقارنة بمحلات التجزئة في الأقاليم. نوصي دائماً بشراء السبائك المغلفة لسهولة إعادة بيعها بأعلى سعر (كاش باك).
-            </p>
-        </article>
+    <div id="educational-articles">
+        <h2>دليل المستثمر الذكي</h2>
+        
+        <div class="static-article">
+            <h3>دليلك الشامل لشراء الذهب في مصر 2026</h3>
+            <p>يعتبر الذهب في مصر مخزن القيمة الأول. عند الشراء، تأكد دائماً من مطابقة "الدمغة" ومراجعة الأسعار اللحظية عبر تطبيق "نبض الصاغة". ننصح دائماً بالتركيز على السبائك والجنيهات الذهب في حالة الادخار لتقليل قيمة المصنعية المفقودة عند البيع.</p>
+        </div>
+
+        <div class="static-article">
+            <h3>لماذا تختلف أسعار الذهب بين محلات الصاغة؟</h3>
+            <p>السعر الخام للذهب عالمي وموحد، ولكن الاختلاف يكمن في "المصنعية" والضريبة المضافة. المحلات الكبرى قد توفر عروضاً أفضل على المصنعية عند شراء كميات. احرص دائماً على طلب فاتورة ضريبية مفصلة توضح وزن العيار وسعر المصنعية بشكل منفصل لضمان حقك.</p>
+        </div>
     </div>
 </div>
+
+<script>
+    const rssSource = 'https://api.rss2json.com/v1/api.json?rss_url=https://www.skynewsarabia.com/rss/v1/business.xml';
+
+    async function fetchLiveNews() {
+        try {
+            const response = await fetch(rssSource);
+            const data = await response.json();
+            const feedContainer = document.getElementById('news-feed');
+            let htmlContent = '';
+
+            data.items.slice(0, 6).forEach(item => {
+                htmlContent += `
+                    <div class="news-item">
+                        <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+                        <p>${item.description.substring(0, 150)}...</p>
+                        <small>المصدر: سكاي نيوز اقتصاد | ${new Date(item.pubDate).toLocaleDateString('ar-EG')}</small>
+                    </div>
+                `;
+            });
+            feedContainer.innerHTML = htmlContent;
+        } catch (error) {
+            document.getElementById('news-feed').innerHTML = '<p style="text-align: center;">يرجى تحديث الصفحة لعرض آخر الأخبار.</p>';
+        }
+    }
+
+    // تشغيل الدالة
+    fetchLiveNews();
+</script>
+
+</body>
+</html>
