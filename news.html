@@ -1,36 +1,25 @@
-<div class="container" style="padding: 20px; text-align: right; direction: rtl;">
-    <h1 style="color: #ffd166; text-align: center;">آخر أخبار الذهب والاقتصاد العربي</h1>
-    <div id="news-container">
-        <p style="text-align: center; color: #fff;">جاري جلب أحدث الأخبار من البورصة...</p>
+<div class="container" style="padding: 20px; direction: rtl; text-align: right;">
+    <h1 style="color: #ffd166; text-align: center;">نشرة أخبار الذهب والاقتصاد</h1>
+    
+    <div id="rss-feed-container" style="margin-top: 20px;">
+        <script src="https://rss.app/static/widgets/imageboard.js" type="text/javascript" async></script>
+        <ins class="rssapp-widget" data-id="v2ndS3i9VzX6mC4Q"></ins>
+    </div>
+    <hr style="border: 1px solid #333; margin: 40px 0;">
+
+    <div class="articles">
+        <article style="background: #1a1a1a; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+            <h2 style="color: #ffd166;">دليلك الشامل لشراء الذهب في مصر 2026</h2>
+            <p style="color: #ccc; line-height: 1.8;">
+                يعتبر الذهب في مصر أكثر من مجرد زينة، فهو مخزن القيمة الأول للمصريين. عند الشراء، يجب عليك التأكد من "الدمغة" ومقارنة سعر الجرام المعلن في "نبض الصاغة" مع السعر الذي يعرضه التاجر. المصنعية تختلف من شركة لأخرى، لذا اسأل دائماً عن (صافي سعر الجرام) قبل الإضافات.
+            </p>
+        </article>
+
+        <article style="background: #1a1a1a; padding: 20px; border-radius: 10px;">
+            <h2 style="color: #ffd166;">لماذا تختلف أسعار الذهب بين المحلات؟</h2>
+            <p style="color: #ccc; line-height: 1.8;">
+                السعر الخام للذهب موحد، ولكن الاختلاف يظهر في "المصنعية" و"الضريبة". المحلات الكبرى في الصاغة قد تقدم مصنعية أقل على السبائك مقارنة بمحلات التجزئة في الأقاليم. نوصي دائماً بشراء السبائك المغلفة لسهولة إعادة بيعها بأعلى سعر (كاش باك).
+            </p>
+        </article>
     </div>
 </div>
-
-<script>
-    // هنستخدم محول RSS لـ JSON عشان نعرض الأخبار كأنها جزء من موقعك
-    const rssUrl = 'https://api.rss2json.com/v1/api.json?rss_url=https://www.skynewsarabia.com/rss/v1/business.xml';
-
-    async function fetchNews() {
-        try {
-            const response = await fetch(rssUrl);
-            const data = await response.json();
-            const container = document.getElementById('news-container');
-            container.innerHTML = '';
-
-            data.items.slice(0, 8).forEach(item => {
-                // هنا بنعرض الخبر بتنسيق موقعك أنت
-                const article = `
-                    <div style="background: #1a1a1a; padding: 20px; border-radius: 12px; margin-bottom: 20px; border-right: 6px solid #ffd166; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
-                        <h3 style="margin-top: 0;"><a href="${item.link}" target="_blank" style="color: #ffd166; text-decoration: none; font-size: 20px;">${item.title}</a></h3>
-                        <p style="color: #ddd; line-height: 1.6; font-size: 15px;">${item.description.substring(0, 150)}...</p>
-                        <span style="color: #888; font-size: 12px;">المصدر: سكاي نيوز اقتصاد | ${new Date(item.pubDate).toLocaleDateString('ar-EG')}</span>
-                    </div>
-                `;
-                container.innerHTML += article;
-            });
-        } catch (error) {
-            container.innerHTML = '<p style="color: red; text-align: center;">حدث خطأ في تحميل الأخبار، برجاء المحاولة لاحقاً.</p>';
-        }
-    }
-
-    fetchNews();
-</script>
