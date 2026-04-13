@@ -8,7 +8,7 @@
         body { 
             background-color: #0d0d0d; 
             color: #ffffff; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            font-family: 'Segoe UI', sans-serif; 
             margin: 0; 
             padding: 0; 
         }
@@ -22,32 +22,16 @@
             z-index: 1000;
         }
         nav a { color: #fff; text-decoration: none; margin: 0 15px; font-weight: bold; }
-        nav a:hover { color: #ffd166; }
         .container { padding: 20px; max-width: 900px; margin: auto; }
-        h1 { color: #ffd166; text-align: center; margin-bottom: 30px; }
-        h2 { color: #ffd166; border-right: 4px solid #ffd166; padding-right: 10px; margin-top: 40px; }
-        .news-item { 
+        h1, h2 { color: #ffd166; }
+        .news-box { 
             background: #1a1a1a; 
-            padding: 20px; 
-            border-radius: 12px; 
+            padding: 15px; 
+            border-radius: 10px; 
             margin-bottom: 20px; 
             border: 1px solid #333; 
-            transition: 0.3s;
         }
-        .news-item:hover { border-color: #ffd166; }
-        .news-item h3 a { color: #ffd166; text-decoration: none; font-size: 1.2rem; }
-        .news-item p { color: #ccc; line-height: 1.6; font-size: 0.95rem; }
-        .news-item small { color: #777; display: block; margin-top: 10px; }
-        .static-article { 
-            background: #1a1a1a; 
-            padding: 25px; 
-            border-radius: 12px; 
-            margin-bottom: 25px; 
-            line-height: 1.8;
-            border-left: 2px solid #333;
-        }
-        .static-article h3 { color: #ffd166; margin-top: 0; }
-        hr { border: 0; border-top: 1px solid #333; margin: 40px 0; }
+        .news-box h3 a { color: #ffd166; text-decoration: none; }
     </style>
 </head>
 <body>
@@ -62,57 +46,44 @@
 <div class="container">
     <h1>نشرة أخبار الذهب والاقتصاد</h1>
 
-    <div id="auto-news-section">
+    <div id="auto-news">
         <h2>آخر التقارير الاقتصادية (تحديث لحظي)</h2>
-        <div id="news-feed" style="margin-top: 20px;">
-            <p style="text-align: center; color: #888;">جاري جلب أحدث الأخبار من البورصة العالمية والمحلية...</p>
-        </div>
+        <div id="feed-container">جاري جلب الأخبار...</div>
     </div>
 
-    <hr>
+    <hr style="border-color: #333; margin: 40px 0;">
 
-    <div id="educational-articles">
+    <div id="articles">
         <h2>دليل المستثمر الذكي</h2>
-        
-        <div class="static-article">
+        <div class="news-box">
             <h3>دليلك الشامل لشراء الذهب في مصر 2026</h3>
-            <p>يعتبر الذهب في مصر مخزن القيمة الأول. عند الشراء، تأكد دائماً من مطابقة "الدمغة" ومراجعة الأسعار اللحظية عبر تطبيق "نبض الصاغة". ننصح دائماً بالتركيز على السبائك والجنيهات الذهب في حالة الادخار لتقليل قيمة المصنعية المفقودة عند البيع.</p>
+            <p>يعتبر الذهب في مصر مخزن القيمة الأول. ننصح بالتركيز على السبائك والجنيهات لتقليل المصنعية عند الادخار.</p>
         </div>
-
-        <div class="static-article">
-            <h3>لماذا تختلف أسعار الذهب بين محلات الصاغة؟</h3>
-            <p>السعر الخام للذهب عالمي وموحد، ولكن الاختلاف يكمن في "المصنعية" والضريبة المضافة. المحلات الكبرى قد توفر عروضاً أفضل على المصنعية عند شراء كميات. احرص دائماً على طلب فاتورة ضريبية مفصلة توضح وزن العيار وسعر المصنعية بشكل منفصل لضمان حقك.</p>
+        <div class="news-box">
+            <h3>لماذا تختلف أسعار الذهب بين المحلات؟</h3>
+            <p>الاختلاف يكمن في المصنعية والضريبة؛ لذا اطلب دائماً فاتورة ضريبية مفصلة توضح الأوزان والعيارات.</p>
         </div>
     </div>
 </div>
 
 <script>
-    const rssSource = 'https://api.rss2json.com/v1/api.json?rss_url=https://www.skynewsarabia.com/rss/v1/business.xml';
-
-    async function fetchLiveNews() {
+    async function fetchNews() {
         try {
-            const response = await fetch(rssSource);
-            const data = await response.json();
-            const feedContainer = document.getElementById('news-feed');
-            let htmlContent = '';
-
-            data.items.slice(0, 6).forEach(item => {
-                htmlContent += `
-                    <div class="news-item">
-                        <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-                        <p>${item.description.substring(0, 150)}...</p>
-                        <small>المصدر: سكاي نيوز اقتصاد | ${new Date(item.pubDate).toLocaleDateString('ar-EG')}</small>
-                    </div>
-                `;
+            const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://www.skynewsarabia.com/rss/v1/business.xml');
+            const data = await res.json();
+            let html = '';
+            data.items.slice(0, 5).forEach(item => {
+                html += `<div class="news-box">
+                    <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
+                    <p>${item.description.substring(0, 150)}...</p>
+                </div>`;
             });
-            feedContainer.innerHTML = htmlContent;
-        } catch (error) {
-            document.getElementById('news-feed').innerHTML = '<p style="text-align: center;">يرجى تحديث الصفحة لعرض آخر الأخبار.</p>';
+            document.getElementById('feed-container').innerHTML = html;
+        } catch (e) {
+            document.getElementById('feed-container').innerHTML = 'يرجى تحديث الصفحة لعرض الأخبار.';
         }
     }
-
-    // تشغيل الدالة
-    fetchLiveNews();
+    fetchNews();
 </script>
 
 </body>
