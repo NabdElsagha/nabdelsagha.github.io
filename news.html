@@ -3,35 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>أخبار الذهب والاقتصاد - نبض الصاغة</title>
+    <title>أخبار الذهب - نبض الصاغة</title>
     <style>
-        body { 
-            background-color: #0d0d0d; 
-            color: #ffffff; 
-            font-family: 'Segoe UI', sans-serif; 
-            margin: 0; 
-            padding: 0; 
-        }
-        nav { 
-            background: #1a1a1a; 
-            padding: 15px; 
-            text-align: center; 
-            border-bottom: 2px solid #ffd166; 
-            position: sticky; 
-            top: 0; 
-            z-index: 1000;
-        }
+        body { background-color: #0d0d0d; color: #fff; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; }
+        nav { background: #1a1a1a; padding: 15px; text-align: center; border-bottom: 2px solid #ffd166; }
         nav a { color: #fff; text-decoration: none; margin: 0 15px; font-weight: bold; }
         .container { padding: 20px; max-width: 900px; margin: auto; }
-        h1, h2 { color: #ffd166; }
-        .news-box { 
-            background: #1a1a1a; 
-            padding: 15px; 
-            border-radius: 10px; 
-            margin-bottom: 20px; 
-            border: 1px solid #333; 
-        }
-        .news-box h3 a { color: #ffd166; text-decoration: none; }
+        h1, h2 { color: #ffd166; text-align: center; }
+        .article-box { background: #1a1a1a; padding: 20px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #333; }
     </style>
 </head>
 <body>
@@ -40,51 +19,31 @@
     <a href="index.html">الرئيسية</a>
     <a href="news.html" style="color: #ffd166;">أخبار الذهب</a>
     <a href="about.html">من نحن</a>
-    <a href="contact.html">اتصل بنا</a>
 </nav>
 
 <div class="container">
     <h1>نشرة أخبار الذهب والاقتصاد</h1>
 
-    <div id="auto-news">
-        <h2>آخر التقارير الاقتصادية (تحديث لحظي)</h2>
-        <div id="feed-container">جاري جلب الأخبار...</div>
+    <div class="article-box">
+        <h2>أخبار الأسواق العالمية (تحديث مباشر)</h2>
+        <a href="https://cryptopanic.com/" target="_blank" data-news_feed="all" data-bg_color="#1a1a1a" data-text_color="#ffffff" data-link_color="#ffd166" data-header_bg_color="#0d0d0d" data-header_text_color="#ffd166" class="CryptoPanicWidget">آخر أخبار المال والذهب</a>
+        <script src="https://www.cryptopanic.com/static/widgets/dist/js/crypto-panic-widget.js"></script>
     </div>
 
-    <hr style="border-color: #333; margin: 40px 0;">
+    <hr style="border: 1px solid #333; margin: 40px 0;">
 
     <div id="articles">
         <h2>دليل المستثمر الذكي</h2>
-        <div class="news-box">
+        <div class="article-box">
             <h3>دليلك الشامل لشراء الذهب في مصر 2026</h3>
-            <p>يعتبر الذهب في مصر مخزن القيمة الأول. ننصح بالتركيز على السبائك والجنيهات لتقليل المصنعية عند الادخار.</p>
+            <p>الذهب في مصر مخزن القيمة الأول. ننصح دائماً بالتركيز على السبائك والجنيهات لتقليل المصنعية عند الادخار.</p>
         </div>
-        <div class="news-box">
+        <div class="article-box">
             <h3>لماذا تختلف أسعار الذهب بين المحلات؟</h3>
             <p>الاختلاف يكمن في المصنعية والضريبة؛ لذا اطلب دائماً فاتورة ضريبية مفصلة توضح الأوزان والعيارات.</p>
         </div>
     </div>
 </div>
-
-<script>
-    async function fetchNews() {
-        try {
-            const res = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://www.skynewsarabia.com/rss/v1/business.xml');
-            const data = await res.json();
-            let html = '';
-            data.items.slice(0, 5).forEach(item => {
-                html += `<div class="news-box">
-                    <h3><a href="${item.link}" target="_blank">${item.title}</a></h3>
-                    <p>${item.description.substring(0, 150)}...</p>
-                </div>`;
-            });
-            document.getElementById('feed-container').innerHTML = html;
-        } catch (e) {
-            document.getElementById('feed-container').innerHTML = 'يرجى تحديث الصفحة لعرض الأخبار.';
-        }
-    }
-    fetchNews();
-</script>
 
 </body>
 </html>
